@@ -1,0 +1,20 @@
+.table {
+  display: table;
+  width: auto;
+}
+.table .row {
+  display: table-row;
+  width: auto;
+  clear: both;
+}
+.table .row .coll {
+  float: left;
+  /* fix for  buggy browsers */
+  display: table-column;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+}
+.table .row .alive {
+  background-color: #ccc;
+}
