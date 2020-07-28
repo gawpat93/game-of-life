@@ -7,9 +7,9 @@ function App() {
   const max = 20;
 
   let table = [];
-  for (var y = 0; y < max; y++) {
+  for (var i = 0; i < max; i++) {
     let tmpRow = [];
-    for (var x = 0; x < max; x++) {
+    for (var j = 0; j < max; j++) {
       let random = Math.random();
       tmpRow.push(Math.round(random));
     }
