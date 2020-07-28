@@ -4,7 +4,7 @@ import "./App.css";
 import Canvas from "./components/Canvas";
 
 function App() {
-  const max = 20;
+  const max = 64;
 
   let table = [];
   for (var i = 0; i < max; i++) {
