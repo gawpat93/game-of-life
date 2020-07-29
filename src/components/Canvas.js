@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Canvas.css";
+import { Button } from "@material-ui/core";
 
 let calculateNeighbours = (table, i, j) => {
   let neighbours = 0;
@@ -67,29 +68,48 @@ let calculateNextStepTable = (table, setTable) => {
 };
 
 const Canvas = (props) => {
-  const [table, setTable] = useState(props.table);
+  const [state, setState] = useState({
+    table: props.table,
+    step: 0,
+    start: false,
+  });
   useEffect(() => {
     const interval = setInterval(
-      () => calculateNextStepTable(table, setTable),
+      () =>
+        state.start &&
+        calculateNextStepTable(state.table, (table) =>
+          setState({ ...state, table: table, step: state.step + 1 })
+        ),
       1000
     );
     return () => {
       clearInterval(interval);
     };
-  }, [table]);
+  }, [state]);
 
   return (
-    <div className="table">
-      {table.map((y, y_index) => (
-        <div className="row" key={y_index}>
-          {y.map((x, x_index) => (
-            <div
-              className={x === 1 ? "coll alive" : "coll"}
-              key={x_index}
-            ></div>
-          ))}
-        </div>
-      ))}
+    <div className="canvas">
+      <div>Step: {state.step}</div>
+      <div>
+        <Button
+          color="secondary"
+          onClick={() => setState({ ...state, start: !state.start })}
+        >
+          {state.start ? "stop" : "Start"}
+        </Button>
+      </div>
+      <div className="table">
+        {state.table.map((y, y_index) => (
+          <div className="row" key={y_index}>
+            {y.map((x, x_index) => (
+              <div
+                className={x === 1 ? "coll alive" : "coll"}
+                key={x_index}
+              ></div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
