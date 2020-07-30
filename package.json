@@ -1,5 +1,6 @@
 {
   "name": "game-of-life",
+  "homepage": "https://patgaw09318.github.io/game-of-life/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
