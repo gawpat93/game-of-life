@@ -83,7 +83,6 @@ const Canvas = (props) => {
     let table = state.table;
     table[x][y] = state.table[x][y] === 0 ? 1 : 0;
     setState({ ...state, table });
-    console.log(x, y, table);
   };
 
   const data = {

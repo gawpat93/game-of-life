@@ -2,7 +2,9 @@
 
 Simple implementation of ["Game of Life"](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
-![](public\game-of-life.gif)
+![](game-of-life.gif)
+
+RWD not supported
 
 This project was bootstrapped with
 
