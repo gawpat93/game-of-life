@@ -1,10 +1,14 @@
-export const generate2dArray = (maxX, maxY) => {
+export const generate2dArray = (maxX, maxY, customValue) => {
   let table = [];
   for (var i = 0; i < maxX; i++) {
     let tmpRow = [];
     for (var j = 0; j < maxY; j++) {
-      let random = Math.random();
-      tmpRow.push(Math.round(random));
+      if (customValue === undefined) {
+        let random = Math.random();
+        tmpRow.push(Math.round(random));
+      } else {
+        tmpRow.push(customValue);
+      }
     }
     table.push(tmpRow);
   }
