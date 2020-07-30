@@ -1,43 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Canvas.css";
 import { Button } from "@material-ui/core";
-
-let calculateNeighbours = (table, i, j) => {
-  let neighbours = 0;
-
-  if (i > 0 && j > 0) {
-    neighbours += table[i - 1][j - 1];
-  }
-  if (i > 0) {
-    neighbours += table[i - 1][j];
-  }
-
-  if (i > 0 && j < table[i - 1].length - 1) {
-    neighbours += table[i - 1][j + 1];
-  }
-
-  if (j > 0) {
-    neighbours += table[i][j - 1];
-  }
-
-  if (j < table[i].length - 1) {
-    neighbours += table[i][j + 1];
-  }
-
-  if (i < table.length - 1 && j > 0) {
-    neighbours += table[i + 1][j - 1];
-  }
-  if (i < table.length - 1) {
-    neighbours += table[i + 1][j];
-  }
-
-  if (i < table.length - 1 && j < table[i + 1].length - 1) {
-    neighbours += table[i + 1][j + 1];
-  }
-
-  //console.log(`${i}, ${j} ${neighbours}`);
-  return neighbours;
-};
+import { calculateNeighboursSum } from "../tools";
 
 let calculateNextStepTable = (table, setTable) => {
   let initialTable = table;
@@ -49,7 +13,7 @@ let calculateNextStepTable = (table, setTable) => {
     let row = [];
     for (var j = 0; j < initialTable[i].length; j++) {
       let alive = initialTable[i][j] === 1;
-      let neighbours = calculateNeighbours(initialTable, i, j);
+      let neighbours = calculateNeighboursSum(initialTable, i, j);
 
       if (alive) {
         if (neighbours < 2 || neighbours > 3) {
