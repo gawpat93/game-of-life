@@ -74,6 +74,10 @@ const Canvas = (props) => {
       <div className="menu">
         <div className="App-title">Game of Life</div>
         <div>Step: {state.step}</div>
+        <div>
+          Alive:{" "}
+          {state.table.reduce((a, b) => a.concat(b)).reduce((a, b) => a + b)}
+        </div>
         <Button
           color="secondary"
           onClick={() => setState({ ...state, start: !state.start })}
