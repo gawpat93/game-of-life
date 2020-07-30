@@ -6,9 +6,7 @@ import { generate2dArray } from "./tools";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Canvas table={generate2dArray(64, 64)} />
-      </header>
+      <Canvas table={generate2dArray(64, 64)} />
     </div>
   );
 }

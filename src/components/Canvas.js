@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Canvas.css";
 import { Button } from "@material-ui/core";
-import { calculateNeighboursSum } from "../tools";
+import { calculateNeighboursSum, generate2dArray } from "../tools";
 
 let calculateNextStepTable = (table, setTable) => {
   let initialTable = table;
@@ -44,35 +44,45 @@ const Canvas = (props) => {
         calculateNextStepTable(state.table, (table) =>
           setState({ ...state, table: table, step: state.step + 1 })
         ),
-      1000
+      1000 * 0.6
     );
     return () => {
       clearInterval(interval);
     };
   }, [state]);
 
+  const resetSimulation = () => {
+    setState({ step: 0, start: false, table: generate2dArray(64, 64) });
+  };
+
   return (
-    <div className="canvas">
-      <div>Step: {state.step}</div>
-      <div>
+    <div>
+      <div className="canvas">
+        <div className="table">
+          {state.table.map((y, y_index) => (
+            <div className="row" key={y_index}>
+              {y.map((x, x_index) => (
+                <div
+                  className={x === 1 ? "coll alive" : "coll"}
+                  key={x_index}
+                ></div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="menu">
+        <div className="App-title">Game of Life</div>
+        <div>Step: {state.step}</div>
         <Button
           color="secondary"
           onClick={() => setState({ ...state, start: !state.start })}
         >
           {state.start ? "stop" : "Start"}
         </Button>
-      </div>
-      <div className="table">
-        {state.table.map((y, y_index) => (
-          <div className="row" key={y_index}>
-            {y.map((x, x_index) => (
-              <div
-                className={x === 1 ? "coll alive" : "coll"}
-                key={x_index}
-              ></div>
-            ))}
-          </div>
-        ))}
+        <Button color="secondary" onClick={resetSimulation}>
+          Reset
+        </Button>
       </div>
     </div>
   );
