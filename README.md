@@ -4,7 +4,7 @@ Simple implementation of ["Game of Life"](https://en.wikipedia.org/wiki/Conway%2
 
 ![](docs/game-of-life.gif)
 
-[DEMO](https://patgaw09318.github.io/game-of-life/)
+[DEMO](https://gawpat93.github.io/game-of-life/)
 
 RWD not supported
 
